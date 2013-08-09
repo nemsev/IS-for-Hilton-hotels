@@ -1,0 +1,29 @@
+<h1>Все сотрудники</h1>
+
+<table>
+  <tr>
+	<th>ID</th>
+    <th>Сотрудник</th>
+    <th>Компания</th>
+    <th>Должность</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @employees.each do |employee| %>
+  <tr>
+	<td><%= employee.id %></td>
+    <td><%= employee.employee %></td>
+    <td><%= employee.company.name %></td>
+    <td><%= employee.position %></td>
+    <td><%= link_to 'Подробнее', employee %></td>
+    <td><%= link_to 'Редактировать', edit_employee_path(employee) %></td>
+    <td><%= link_to 'Удалить', employee, method: :delete, data: { confirm: 'Вы уверены, что хотите удалить сотрудника?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'Добавить нового сотрудника', new_employee_path %>

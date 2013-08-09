@@ -1,0 +1,9 @@
+<ul class="menu" style="padding-top:20px;padding-bottom:20px;">
+  <% unless @current_employee.employee == 'eivanov' %>
+    <li><%= link_to "Заказ такси для гостей", taxirequests_path %></li>
+    <li><%= link_to "Пополнение канцелярских принадлежностей на рабочем месте", stationeryrequests_path %></li>
+  <% else %>
+    <li><%= link_to "Учет ТМЦ на складе", hotelsupplies_path %></li>
+    <li><%= link_to "Справочник единиц измерения", measures_path %><li>
+  <% end %>
+</ul>

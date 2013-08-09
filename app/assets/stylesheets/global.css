@@ -1,0 +1,88 @@
+body {
+  background-color: #dadee3;
+}
+body,h2,ul {
+  margin: 0px;
+  padding: 0px;
+}
+
+a {
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+}
+
+/* Шаблон страницы */
+#layout {
+  margin: 0px auto;
+  width: 960px;
+}
+
+header {
+  margin-top: 20px;
+  padding-bottom: 10px;
+}
+
+header nav {
+  float: left;
+}
+
+header #welcome_note {
+  float: right;
+}
+
+#layout #wrapper {
+  background-color: #fff;
+  border: 1px solid #cbd2db;
+  border-radius: 7px;
+  padding: 20px;
+}
+/* Конец шаблона страницы */
+
+/* Меню */
+.menu li {
+  border-bottom: 1px dotted #DDDDDD;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+/* Конец меню */
+
+/* Шапка заявок на такси*/
+.head li {
+  display: inline-block;
+  width: 140px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.taxi_request li {
+  display: inline-block;
+  width: 140px;
+  border-bottom: 2px solid green;
+  text-align: center;
+}
+
+#add_request {
+  float: right;
+}
+
+.closed_req {
+  cursor: pointer;
+}
+
+.closed_taxi_request li {
+  display: inline-block;
+  width: 140px;
+  border-bottom: 2px solid red;
+  text-align: center;
+}
+
+
+
+
+
+
+
+

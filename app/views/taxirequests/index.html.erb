@@ -1,0 +1,101 @@
+<div id="add_request">
+  <%= link_to 'Заказать такси', new_taxirequest_path %> | <%= link_to 'Ежемесячный отчет', '/taxirequests.pdf' %>
+</div>
+<div style="clear:both;"></div>
+<h3>Заявки такси на сегодня (<%= Time.now.strftime('%d-%m-%Y') %>)</h3>
+<ul class="list_for_day0">
+  <li>
+    <ul class="head">
+      <li>кто заказывал</li>
+      <li>метод оплаты</li>
+      <li>пункт назначения</li>
+      <li>время подачи</li>
+    </ul>
+  </li>
+
+  <% @taxirequests.each do |taxirequest| %>
+  <li>
+    <ul class="taxi_request">
+	  <li><%= taxirequest.employee.employee %></li>
+	  <li><%= taxirequest.payment_method %></li>
+	  <li><%= taxirequest.destination %></li>
+	  <li><%= taxirequest.arrival_time.strftime('%H:%M') %></li>
+      <li><%= link_to 'Редактировать', edit_taxirequest_path(taxirequest) %></li>
+      <li><%= link_to 'Отменить', taxirequest, method: :delete, 
+			data: { confirm: 'Вы уверены, что хотите отменить заказ? Для отмены заказа сначала позвоните 2212212 и скажите № заказа!' } %></td>
+    </ul>
+  </li>
+  <% end %>
+  <li><span id="0" class="closed_req">Показать закрытые заявки</span></li>
+</ul>
+<hr />
+<h3>Заявки такси на вчера (<%= (Time.now.to_date-1).strftime('%d-%m-%Y') %>)</h3>
+<ul class="list_for_day1">
+  <li>
+    <ul class="head">
+      <li>кто заказывал</li>
+      <li>метод оплаты</li>
+      <li>пункт назначения</li>
+      <li>время подачи</li>
+    </ul>
+  </li>
+
+  <% @taxirequests_yesterday.each do |taxirequest| %>
+  <li>
+    <ul class="taxi_request">
+	  <li><%= taxirequest.employee.employee %></li>
+	  <li><%= taxirequest.payment_method %></li>
+	  <li><%= taxirequest.destination %></li>
+	  <li><%= taxirequest.arrival_time.strftime('%H:%M') %></li>
+      <li><%= link_to 'Редактировать', edit_taxirequest_path(taxirequest) %></li>
+      <li><%= link_to 'Отменить', taxirequest, method: :delete, 
+			data: { confirm: 'Вы уверены, что хотите отменить заказ? Для отмены заказа сначала позвоните 2212212 и скажите № заказа!' } %></td>
+    </ul>
+  </li>
+  <% end %>
+  <li><span id="1" class="closed_req">Показать закрытые заявки</span></li>
+</ul>
+<hr />
+<h3>Заявки такси на <%= (Time.now.to_date-2).strftime('%d-%m-%Y') %></h3>
+<ul class="list_for_day2">
+  <li>
+    <ul class="head">
+      <li>кто заказывал</li>
+      <li>метод оплаты</li>
+      <li>пункт назначения</li>
+      <li>время подачи</li>
+    </ul>
+  </li>
+
+  <% @taxirequests_2days_ago.each do |taxirequest| %>
+  <li>
+    <ul class="taxi_request">
+	  <li><%= taxirequest.employee.employee %></li>
+	  <li><%= taxirequest.payment_method %></li>
+	  <li><%= taxirequest.destination %></li>
+	  <li><%= taxirequest.arrival_time.strftime('%H:%M') %></li>
+      <li><%= link_to 'Редактировать', edit_taxirequest_path(taxirequest) %></li>
+      <li><%= link_to 'Отменить', taxirequest, method: :delete, 
+			data: { confirm: 'Вы уверены, что хотите отменить заказ? Для отмены заказа сначала позвоните 2212212 и скажите № заказа!' } %></td>
+    </ul>
+  </li>
+  <% end %>
+  <li><span id="2" class="closed_req">Показать закрытые заявки</span></li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

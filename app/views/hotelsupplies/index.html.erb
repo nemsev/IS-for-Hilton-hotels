@@ -1,0 +1,31 @@
+<div id="add_request">
+  <%= link_to 'Заявки на канц. принадлежности', stationeryrequests_path %> | <%= link_to 'Отчет-список ТМЦ на складе', '/hotelsupplies.pdf' %>
+</div>
+<div style="clear:both;"></div>
+<h1>Товарно-материальные ценности на складе</h1>
+
+<table>
+  <tr>
+	<th>ID</th>
+    <th>Наименование</th>
+    <th>Количество</th>
+    <th>Цена за единицу(руб.)</th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @hotelsupplies.each do |hotelsupply| %>
+  <tr>
+	<td><%= hotelsupply.id %></td>
+    <td><%= hotelsupply.name %></td>
+    <td><%= hotelsupply.num %></td>
+    <td><%= hotelsupply.cost %></td>
+    <td><%= link_to 'Редактировать', edit_hotelsupply_path(hotelsupply) %></td>
+    <td><%= link_to 'Удалить', hotelsupply, method: :delete, data: { confirm: 'Вы уверены, что хотите удалить этот предмет со склада?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'Поступление товара', new_hotelsupply_path %>

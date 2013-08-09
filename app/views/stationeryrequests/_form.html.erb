@@ -1,0 +1,59 @@
+<% # если текущая страница - редактирование %>
+<% if params[:action] == 'edit' %>
+  <%= form_tag("/stationeryrequests/#{params[:id]}", :method => "put") do %>
+    <% if @stationeryrequest.errors.any? %>
+      <div id="error_explanation">
+       <h2><%= pluralize(@stationeryrequest.errors.count, "error") %> prohibited this stationeryrequest from being saved:</h2>
+       <ul>
+        <% @stationeryrequest.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+        <% end %>
+       </ul>
+      </div>
+    <% end %>
+    
+    <% i = 0 %>
+    <% k = 1 %>
+    <% selected_items = [ ] %>
+    <% numbers = [ ] %>
+    <% @stationeryrequest.hotelsuppliesrequests.each do |hotelsuppliesrequest| %>
+      <% selected_items[i] = hotelsuppliesrequest.hotelsupply.id %>
+      <% numbers[hotelsuppliesrequest.hotelsupply.id] = hotelsuppliesrequest.num %>
+      <% i += 1 %>
+      <% k += 1 %>
+    <% end %>
+
+    <% @hotelsupplies.each do |hotelsupply| %>
+      <div class="actions">
+        <%= check_box_tag('selected_items[]', hotelsupply.id, (true if selected_items.include? hotelsupply.id))%><%= hotelsupply.name %>, в наличии -  <%= hotelsupply.num %> 
+	    <%= text_field_tag "numbers[#{hotelsupply.id}]", numbers[hotelsupply.id] %>
+      </div>
+    <% end %>
+    <div class="actions">
+      <%= submit_tag 'Заказать' %>
+    </div>
+  <% end %>
+<% else %>
+  <%= form_tag("/stationeryrequests", :method => "post") do %>
+    <% if @stationeryrequest.errors.any? %>
+      <div id="error_explanation">
+       <h2><%= pluralize(@stationeryrequest.errors.count, "error") %> prohibited this stationeryrequest from being saved:</h2>
+       <ul>
+        <% @stationeryrequest.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+        <% end %>
+       </ul>
+      </div>
+    <% end %>
+
+    <% @hotelsupplies.each do |hotelsupply| %>
+      <div class="actions">
+        <%= check_box_tag 'selected_items[]', hotelsupply.id %><%= hotelsupply.name %>, в наличии -  <%= hotelsupply.num %> 
+	    <%= text_field_tag "numbers[#{hotelsupply.id}]" %>
+      </div>
+      <% end %>
+    <div class="actions">
+      <%= submit_tag 'Заказать' %>
+    </div>
+    <% end %>
+<% end %>

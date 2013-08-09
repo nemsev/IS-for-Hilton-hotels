@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Наименование:</b>
+  <%= @hotelsupply.name %>
+</p>
+
+<p>
+  <b>Количество:</b>
+  <%= @hotelsupply.num %>
+</p>
+
+<p>
+  <b>Цена за единицу(руб.):</b>
+  <%= @hotelsupply.cost %>
+</p>
+
+
+<%= link_to 'Редактировать', edit_hotelsupply_path(@hotelsupply) %> |
+<%= link_to 'Назад', hotelsupplies_path %>

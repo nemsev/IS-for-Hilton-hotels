@@ -1,0 +1,30 @@
+ru:
+  activerecord:
+    models:
+      taxirequest: taxirequest
+    attributes:
+      taxirequest:
+        arrival_date: "Дата подачи"
+        arrival_time: "Время подачи"
+        destination: "Пункт назначения"
+        payment_method: "Метод оплаты"
+        room: "Комната"
+        order_number: "№ заказа"
+        cost: "Сумма"
+        guest_name: "Имя гостя"
+        status: "Машина подъехала?"
+      employee:
+        employee: "Сотрудник"
+        password: "Пароль"
+        company: "Компания"
+        position: "Должность"
+      hotelsupply:
+        name: "Наименование"
+        num: "Количество"
+        cost: "Цена за единицу(руб.)"
+      stationeryrequest:
+        status: "Статус заявки"
+      measure:
+        name: "Ед. измерения"
+        
+        

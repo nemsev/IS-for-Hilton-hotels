@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Сотрудник:</b>
+  <%= @employee.employee %>
+</p>
+
+<p>
+  <b>Компания:</b>
+  <%= @employee.company.name %>
+</p>
+
+<p>
+  <b>Должность:</b>
+  <%= @employee.position %>
+</p>
+
+<p>
+  <b>Фото:</b>
+  <%= image_tag @employee.picture.url(:small) %>
+</p>
+
+
+<%= link_to 'Редактировать', edit_employee_path(@employee) %> |
+<%= link_to 'Назад', employees_path %>

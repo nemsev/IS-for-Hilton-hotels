@@ -1,0 +1,2 @@
+module HotelsuppliesHelper
+end

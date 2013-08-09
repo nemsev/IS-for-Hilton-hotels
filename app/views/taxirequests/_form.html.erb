@@ -1,0 +1,54 @@
+<%= form_for(@taxirequest) do |f| %>
+  <% if @taxirequest.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@taxirequest.errors.count, "error") %> prohibited this taxirequest from being saved:</h2>
+
+      <ul>
+      <% @taxirequest.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :arrival_date %><br />
+    <%= f.date_select :arrival_date, :order => [:day, :month, :year] %>
+    <%= f.label :arrival_time %>
+    <%= f.time_select :arrival_time, :minute_step => 5, :default => Time.now %>
+  </div>
+  <div class="field">
+    <%= f.label :destination %><br />
+    <%= f.text_field :destination %>
+  </div>
+  <div class="field">
+    <%= f.label :payment_method %><br />
+    <%= f.select(:payment_method, [['car', 'car'], ['opera', 'Opera']]) %>
+  </div>
+  <div class="field">
+    <%= f.label :room %><br />
+    <%= f.text_field :room %>
+  </div>
+<% # если текущая страница - редактирование %>
+<% if params[:action] == 'edit' %>
+  <div class="field">
+	<%= f.label :order_number %><br />
+    <%= f.text_field :order_number %>
+  </div>
+  <div class="field">
+	<%= f.label :cost %><br />
+    <%= f.text_field :cost %>
+  </div>
+  <div class="field">
+	<%= f.label :guest_name %><br />
+    <%= f.text_field :guest_name %>
+  </div>
+  <div class="field">
+	<%= f.label :status %><br />
+    <%= f.check_box :status %>
+  </div>
+<% end %>
+  <div class="actions">
+    <%= f.submit 'Выполнить' %>
+  </div>
+<% end %>

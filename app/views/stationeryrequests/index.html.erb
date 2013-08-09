@@ -1,0 +1,53 @@
+<h1>Заявки на канцелярские и отельные принадлежности</h1>
+
+<table>
+  <tr>
+	<th>ID</th>
+    <th>Статус</th>
+    <th>Добавил</th>
+    <th>Дата</th>
+    <th>Что заказывал</th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @stationeryrequests.each do |stationeryrequest| %>
+  <tr>
+	<td><%= stationeryrequest.id %></td>
+    <td>
+    <% if stationeryrequest.status == 0 %>
+    Открыта
+    <% else %>
+    Закрыта
+    <% end %>
+    </td>
+    <td><%= stationeryrequest.employee.employee %></td>
+    <td><%= stationeryrequest.created_at.strftime('%d-%m-%Y в %H:%M') %></td>
+    <td>
+    <% stationeryrequest.hotelsuppliesrequests.each do |hotelsuppliesrequest| %>
+    <%= hotelsuppliesrequest.hotelsupply.name %> в количестве  <%= hotelsuppliesrequest.num %><br />
+    <% end %>
+    </td>
+    <td>
+	<% if @current_employee.employee == 'eivanov' && stationeryrequest.status == 0 %>
+	  <%= link_to 'Списать товар', stationeryrequest %>
+    <% elsif @current_employee.employee != 'eivanov' %>
+      <%= link_to 'Редактировать', edit_stationeryrequest_path(stationeryrequest) %>
+    <% end %>
+    </td>
+    <td>
+	<% if @current_employee.employee != 'eivanov' %>
+      <%= link_to 'Отменить', stationeryrequest, method: :delete, data: { confirm: 'Вы уверены, что хотите отменить заявку?' }
+%>  
+    <% else %>
+      <%= link_to 'Отчет о списании ТМЦ', "/stationeryrequests/#{stationeryrequest.id}"+'.pdf' %>
+    <% end %>
+    </td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+<% unless @current_employee.employee == 'eivanov' %>
+  <%= link_to 'Заказать канцелярские принадлежности', new_stationeryrequest_path %>
+<% end %>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>SaasApplication</title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>	
+  <div id="layout">
+	
+	<header>
+	  <nav>
+	    <h2>Hilton</h2>
+	  </nav>
+	  <div id="welcome_note">
+	  <% if @current_employee %>
+	    Добро пожаловать, <b><%= @current_employee.employee %></b>(<%= @current_employee.position %>)
+		<%= link_to "Выйти", logout_path %>
+      <% end %>
+	  </div>
+	  <div style="clear:both;"></div>
+	</header>
+	<div id="wrapper">
+      <%= yield %>
+    </div>
+
+  </div>
+</body>
+</html>
